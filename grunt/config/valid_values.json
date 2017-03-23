@@ -1,0 +1,8 @@
+{
+    "args": {
+        "mode": ["dev", "prod"],
+        "env": ["loc", "dev", "pre", "pro"],
+        "websocketserver": ["up", "down"],
+        "websockettype": ["js", "at_ws", "at_lp"]
+    }
+}

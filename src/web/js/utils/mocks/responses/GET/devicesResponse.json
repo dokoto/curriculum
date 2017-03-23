@@ -1,0 +1,26 @@
+{
+    "success": true,
+    "data": [{
+        "value": "d6b5c1133ae50e4ddc12755957a78fc9",
+        "label": "SCREEN1"
+    }, {
+        "value": "98a5086f11317e5053e958c88485f774",
+        "label": "SCREEN2"
+    }, {
+        "value": "491ee32a845213619a49515e6aa74b61",
+        "label": "SCREEN3"
+    }, {
+        "value": "c837915cc59a29f305955833db8b8e39",
+        "label": "SCREEN4"
+    }, {
+        "value": "87a688626f5685e7e5f92a7f6f500459",
+        "label": "SCREEN5"
+    }, {
+        "value": "ff57473be9c3b2331dc4d403166cb086",
+        "label": "SCREEN6"
+    }, {
+        "value": "b4be8f2b249daba8616265f817a0ec08",
+        "label": "SCREEN7"
+    }],
+    "error": null
+}

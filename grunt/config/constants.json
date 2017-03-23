@@ -1,0 +1,26 @@
+{
+    "APPNAME": "SlideShow (Dealer 2.0)",
+    "VERSIONAPP": "0.0.1",
+    "BUILDDATE": "",
+    "MODE": "dev",
+    "ENV": "pre",
+    "MOCKS": true,
+    "STORE_SESSION_KEY": "slideshowsession",
+    "MODEL_TIMEOUT_MS": 15000,
+    "MAX_INTERVAL_SESSION_IN_DAYS": 1,
+    "INTERVAL_BETWEEN_SLIDES_MS": 3000,
+    "IMAGES_TO_PRELOAD": 2,
+    "V3DIMAGE": {
+        "HTTPS": true,
+        "CLIENT": "CFGAP3D",
+        "FORMAT": "png",
+        "RATIO": "1",
+        "BACK": "0",
+        "QUALITY": 90,
+        "SUBPATHGALLERY": "V3DImage.ashx"
+    },
+    "WEBSOCKETTYPE": "js",
+    "WEBSOCKET_AUTO_RECONNECT_INTERVAL_MS": 120000,
+    "WEBSOCKET_DISCONNECTION_TIMEOUT_MS": 43200000,    
+    "DEVICE_TYPE": "SCREEN"
+}
