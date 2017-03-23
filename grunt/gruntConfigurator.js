@@ -63,7 +63,7 @@ class Configurator {
 var doMap = {
     mkConf: function(grunt) {
         return {
-            base: new Configurator(grunt, './config/conf_base.json')
+            base: new Configurator(grunt, './config/constants.json')
         };
     },
 
@@ -96,35 +96,7 @@ var doMap = {
             }
         }
 
-        if (grunt.option('env') === undefined) {
-            grunt.fail.fatal('El parametro --env es obliglatorio para el constructor');
-        } else {
-            data.args.env = (grunt.option('env') || 'pre').toLowerCase();
-            if (validParams.args.env.indexOf(data.args.env) === -1) {
-                grunt.fail.fatal('El parametro --env solo puede contener los valores: ' + validParams.args.env);
-            }
-        }
-
-        data.args.websocketserver = (grunt.option('websocketserver') || 'down').toLowerCase();
-        if (validParams.args.websocketserver.indexOf(data.args.websocketserver) === -1) {
-            grunt.fail.fatal('El parametro --websocketserver solo puede contener los valores: ' + validParams.args.websocketserver);
-        }
-
-        if (grunt.option('websockettype') === undefined) {
-            grunt.fail.fatal('El parametro --websockettype es obliglatorio para el constructor');
-        } else {
-            data.args.websockettype = (grunt.option('websockettype') || 'js').toLowerCase();
-            if (validParams.args.websockettype.indexOf(data.args.websockettype) === -1) {
-                grunt.fail.fatal('El parametro --websockettype solo puede contener los valores: ' + validParams.args.websockettype);
-            }
-        }
-
-        if (grunt.option('mocks') === undefined) {
-            grunt.fail.fatal('El parametro --mocks es obliglatorio para el constructor');
-        } else {
-            data.args.mocks = utils.misc.convBoolean(grunt.option, 'mocks', false);
-        }
-
+        data.args.mocks = utils.misc.convBoolean(grunt.option, 'mocks', false);
         data.args.verbose = utils.misc.convBoolean(grunt.option, 'verbose', false);
 
         data.args.builddate = new Date().toISOString();
@@ -136,10 +108,9 @@ var doMap = {
     base: function(grunt, conf, data) {
         data.base = {};
 
-        data.base.appName = conf.base.fetch(['appName']);
-        data.base.proxy = conf.base.fetch(['proxy']);
-        data.base.buildFolder = conf.base.fetch(['buildFolder']);
-        data.base.sourcesFolder = conf.base.fetch(['sourcesFolder']);
+        data.base.appName = conf.base.fetch(['APP_NAME']);
+        data.base.buildFolder = conf.base.fetch(['BUILD_FOLDER']);
+        data.base.sourcesFolder = conf.base.fetch(['SOURCES_FOLDER']);
         data.base.proyectFolderName = __dirname.substr(__dirname.lastIndexOf(path.sep) + 1);
 
         return data;
@@ -156,14 +127,11 @@ var doMap = {
 
 function header(grunt, data) {
     grunt.log.writeln('*********************************************************************');
-    grunt.log.writeln('SlideShow Dealer 2.0 Constructor System... ' + data.pkg.version + 'v');
+    grunt.log.writeln('CV Constructor System... ' + data.pkg.version + 'v');
     grunt.log.writeln('*********************************************************************');
     grunt.log.writeln('Project           : ' + data.args.target);
     grunt.log.writeln('App version       : ' + data.args.versionApp);
     grunt.log.writeln('Compilation Mode  : ' + data.args.mode);
-    grunt.log.writeln('Environment       : ' + data.args.env);
-    grunt.log.writeln('WebsocketServer   : ' + data.args.websocketserver);
-    grunt.log.writeln('WebsocketType     : ' + data.args.websockettype);
     grunt.log.writeln('Mock actived      : ' + data.args.mocks);
     grunt.log.writeln('Build Date        : ' + data.args.builddate);
     grunt.log.writeln('Verbose           : ' + data.args.verbose);

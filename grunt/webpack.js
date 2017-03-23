@@ -12,10 +12,8 @@ module.exports = function(grunt, options) {
             cache: false,
             debug: true,
             devtool: 'source-map',
-
-            // webpack options
-            constext: __dirname + '/src',
-            entry: './src/js/main.js',
+            constext: __dirname + '/src/web',
+            entry: './src/web/js/main.js',
             output: {
                 devtoolLineToLine: true,
                 path: 'builds/core/dev/',
@@ -40,19 +38,11 @@ module.exports = function(grunt, options) {
                 warnings: options.args.verbose,
                 publicPath: options.args.verbose
             },
-            // stats: false disables the stats output
 
-            storeStatsTo: "webpackStatus", // writes the status to a variable named xyz
-            // you may use it later in grunt i.e. <%= xyz.hash %>
-
-            progress: false, // Don't show progress
-            // Defaults to true
-
-            failOnError: true, // don't report error to grunt if webpack find errors
-            // Use this if webpack errors are tolerable and grunt should continue
-
-            inline: true, // embed the webpack-dev-server runtime into the bundle
-            // Defaults to false
+            storeStatsTo: "webpackStatus",
+            progress: false,
+            failOnError: true,
+            inline: true,
 
             module: {
                 loaders: [{
@@ -102,10 +92,8 @@ module.exports = function(grunt, options) {
         },
         prod: {
             debug: false,
-
-            // webpack options
-            constext: __dirname + '/src',
-            entry: './src/js/main.js',
+            constext: __dirname + '/src/web',
+            entry: './src/web/js/main.js',
             output: {
                 path: "builds/core/prod/",
                 publicPath: '../../',
@@ -128,19 +116,10 @@ module.exports = function(grunt, options) {
                 warnings: options.args.verbose,
                 publicPath: options.args.verbose
             },
-            // stats: false disables the stats output
-
-            storeStatsTo: "webpackStatus", // writes the status to a variable named xyz
-            // you may use it later in grunt i.e. <%= xyz.hash %>
-
-            progress: true, // Don't show progress
-            // Defaults to true
-
-            failOnError: true, // don't report error to grunt if webpack find errors
-            // Use this if webpack errors are tolerable and grunt should continue
-
-            inline: true, // embed the webpack-dev-server runtime into the bundle
-            // Defaults to false
+            storeStatsTo: "webpackStatus",
+            progress: true,
+            failOnError: true,
+            inline: true,
             module: {
                 loaders: [{
                     test: /\.html$/,
