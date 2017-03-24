@@ -53,8 +53,8 @@ module.exports = function(grunt, options) {
     if (options && options.args) {
         let tasks = {
             'default': ['help'],
-            'build-core': resolve('build-core', options.args),
-            'build-maven': resolve('build-maven', options.args),
+            'build-web': resolve('build-web', options.args),
+            'build-native': resolve('build-native', options.args),
         };
 
         return tasks;

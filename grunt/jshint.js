@@ -30,7 +30,7 @@ module.exports = {
                 $: true,
                 jQuery: true,
                 i18n: true,
-                btoa: true
+                btoa: true                
             }
         },
         gruntfile: {

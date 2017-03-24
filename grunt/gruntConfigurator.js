@@ -156,7 +156,7 @@ function mainProcess(grunt, data) {
 
 exports.doMap = function(grunt) {
 
-    // GLOBAL
+    // GLOBAL    
     var data = doMap.global(grunt);
     if (process.argv.length === 2) {
         data.args = {};

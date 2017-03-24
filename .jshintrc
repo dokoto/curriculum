@@ -19,6 +19,7 @@
         "Log": true,
         "cordova": true,
         "global": true,
-        "sprintf": true
+        "sprintf": true,
+        "exports": true
     }
 }
