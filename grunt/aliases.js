@@ -2,32 +2,18 @@
 
 module.exports = function(grunt, options) {
     var build_full_dev = [
-        'websocket-server',
-        'clean:bem_components',
-        'clean:materialize_bem',
-        'copy:materialize_bem',
         'copy:constants',
-        'concat:bem_components',
         'jshint',
         'mkdir:builds',
         'clean:web_builds',
-        'mkdir:indexes',
-        'create-indexes',
         'webpack:dev'
     ];
 
     var build_full_prod = [
-        'websocket-server',
-        'clean:bem_components',
-        'clean:materialize_bem',
-        'copy:materialize_bem',
         'copy:constants',
-        'concat:bem_components',
         'jshint',
         'mkdir:builds',
         'clean:web_builds',
-        'mkdir:indexes',
-        'create-indexes',
         'webpack:prod'
     ];
 

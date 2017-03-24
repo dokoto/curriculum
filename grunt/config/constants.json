@@ -1,5 +1,6 @@
 {
-    "APP_NAME": "Curriculum Vitae - Manuel Alfaro Sierra",
+    "APP_NAME": "CURRICULUM",
+    "APP_DESCRIPTION": "Curriculum Vitae - Manuel Alfaro Sierra",
     "BOOT_FILE": "bootCV.js",
     "BUILD_FOLDER": "build/",
     "SOURCES_FOLDER": "src",

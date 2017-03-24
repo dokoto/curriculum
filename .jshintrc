@@ -20,6 +20,7 @@
         "cordova": true,
         "global": true,
         "sprintf": true,
-        "exports": true
+        "exports": true,
+        "printf": true
     }
 }
