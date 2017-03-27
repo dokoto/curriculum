@@ -5,7 +5,7 @@ const gruntOptions = require('grunt-known-options');
 const resolve = require('resolve').sync;
 const basedir = process.cwd();
 
-class Builder {
+class GrunterCli {
     constructor(options) {
         this.options = {};
         this.gruntpath = null;
@@ -42,4 +42,4 @@ class Builder {
 
 }
 
-module.exports = Builder;
+module.exports = GrunterCli;
