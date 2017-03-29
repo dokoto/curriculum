@@ -1,10 +1,10 @@
-'use strict'
+'use strict';
 
 const readline = require('readline');
 const Engine = require('./engine');
 
 class Test {
-    run() {
+    static run() {
         // TEST
         const rl = readline.createInterface({
             input: process.stdin,
@@ -39,4 +39,4 @@ class Test {
     }
 }
 
-module.exports = Test;
+Test.run();

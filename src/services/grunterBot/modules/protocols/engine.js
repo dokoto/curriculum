@@ -2,20 +2,20 @@
 
 const Events = require('events');
 const _ = require('lodash/array');
+const scripts = require('./protocols');
 
 class Engine extends Events {
     constructor() {
         super();
         this.values = {};
         this.script = {};
-        this.scripts = require('./protocols');
     }
 
-    _checkAyuda(response) {
-        let match = response.match(new RegExp('\\bayuda\\b', 'i'));
+    _checkDirectCommands(response) {
+        let match = response.match(new RegExp(scripts.ayuda.matcher, 'i'));
         if (match) {
-            this.script = Object.assign({}, this.scripts.ayuda);
-            this.script.name = 'ayuda';
+            this.script = Object.assign({}, scripts[match]);
+            this.script.name = match;
             return true;
         }
         return false;
@@ -23,21 +23,21 @@ class Engine extends Events {
 
     _resolveCommand(script, value) {
         if (script.next === 'matcher') {
-            this.script = (Array.isArray(this.scripts[value])) ? Object.assign(this.script, this.scripts[value][0]) : Object.assign(this.script, this.scripts[value]);
+            this.script = (Array.isArray(scripts[value])) ? Object.assign(this.script, scripts[value][0]) : Object.assign(this.script, scripts[value]);
             this.script.name = value;
         } else if (script.next === 'question') {
-            let index = _.findIndex(this.scripts[script.name], {
+            let index = _.findIndex(scripts[script.name], {
                 question: script.question
             });
-            if (index < this.scripts[script.name].length) {
-                this.script = Object.assign(this.script, this.scripts[script.name][index + 1]);
+            if (index < scripts[script.name].length) {
+                this.script = Object.assign(this.script, scripts[script.name][index + 1]);
                 this.script.name = script.name;
             }
         } else if (script.next === 'ayuda') {
-            this.script = Object.assign({}, this.scripts.ayuda);
+            this.script = Object.assign({}, scripts.ayuda);
             this.script.name = script.next;
         } else {
-            console.log('Something go wrong, "next" action %s no allowed', script.next);
+            console.printf('Something go wrong, "next" action %s no allowed', script.next);
         }
     }
 
@@ -54,40 +54,37 @@ class Engine extends Events {
         this.script = {};
         this.values[this.script.valueName] = value;
 
-        return {
-            'script': script,
-            'value': value
-        };
+        return [script, value];
     }
 
-    _processResponse(response) {
+    _processResponse(id, response) {
         let script = {};
         try {
-            if (this._checkAyuda(response)) return;
+            if (this._checkDirectCommands(response)) return;
             let [script, value] = this._extractCommand(response);
             this._resolveCommand(script, value);
         } catch (err) {
-            console.log('regex: %s', this.script.matcher);
-            console.log('string: %s', response);
-            console.log(err.stack);
-            this.emit('script:question:ready', this.script.error);
+            console.debug('regex: %s', this.script.matcher);
+            console.debug('string: %s', response);
+            console.error(err.stack);
+            this.emit('script:question:ready', id, this.script.error);
         } finally {
             if (script.triggerEvent) {
-                this.emit(script.triggerEvent, this.values);
+                this.emit(script.triggerEvent, id, this.values);
             }
-            this.emit('script:question:ready', this.script.question);
+            this.emit('script:question:ready', id, this.script.question);
         }
     }
 
-    next(response) {
-        this._processResponse(response);
+    next(id, response) {
+        this._processResponse(id, response);
     }
 
-    start() {
-        this.script = this.scripts.start;
+    start(id) {
+        this.script = scripts.start;
         this.script.name = 'start';
-        this.emit('script:question:ready', this.script.question);
+        this.emit('script:question:ready', id, this.script.question);
     }
 }
 
-module.export = Engine;
+module.exports = Engine;

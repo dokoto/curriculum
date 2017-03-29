@@ -18,7 +18,7 @@ Los comandos que estan siempre a tu disposicion son:
 "cv": Te guiare para que obtengas una copia del cv de Manuel Alfaro Sierra en  pdf o en una App para android.
 "consulta": Donde atraves de preguntas te dare informacion del cv de Manuel.`,
         'error': 'Que embarazoso.. no te he entendido puedes tratar de repetirlo ?',
-        'matcher': '\\bcv\\b|\\bconsulta\\b',
+        'matcher': '\\bcv\\b|\\bconsulta\\b|\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b|\\bayuda\\b',
         'valueName': 'docType',
         'next': 'matcher'
     },

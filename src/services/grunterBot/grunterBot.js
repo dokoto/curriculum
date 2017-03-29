@@ -1,19 +1,42 @@
 'use strict';
 
-const os = require('os');
 const SetGlobals = require('./utils/setGlobals');
 const TelegramDaemon = require('./modules/telegramAPI/telegramDaemon');
-const ProxyModule = require('./modules/proxy');
-const cluster = require('cluster');
-const CpuUsage = require('./utils/cpuUsage');
+const EngineProtocol = require('./modules/protocols/engine');
 
 class GrunterBot {
     constructor() {
         SetGlobals.run();
+        this.incomingMessage = {};
+        this.users = {};
+    }
+
+    _handleQuestionReady(id, question) {
+        this.telegramBot.sendMessage({
+            chat_id: id,
+            text: question
+        });
+    }
+
+    _handleFinishApk(id, values) {
+
+    }
+
+    _handleFinishPdf(id, values) {
+
     }
 
     _handleTelegramIncomingMsg(message) {
-        new ProxyModule(this.telegramBot, message).run();
+        if (!this.users[message.from.id]) {
+            this.users[message.from.id].engine = new EngineProtocol();
+            this._configEngineProtocol(this.users[message.from.id].engine);
+
+        }
+        this.users[message.from.id].lastMessage = {
+            'message': message,
+            create: new Date()
+        };
+        this.users[message.from.id].engine.next(message.from.id, message.text);
     }
 
     _starTelegramDaemon() {
@@ -21,30 +44,14 @@ class GrunterBot {
         this.telegramBot.start();
     }
 
-    _handleClusterExit(worker, code, signal) {
-        console.log('[WORKER] %s died, %s %s', worker.process.pid, code, signal);
-        if (!worker.exitedAfterDisconnect) {
-            cluster.fork();
-        }
-    }
-
-    _startClusterMode() {
-        if (cluster.isMaster) {
-            let cpus = os.cpus();
-            console.log('[MASTER] %s is running', process.pid);
-            for (let cpu in cpus) cluster.fork();
-            APP.cpuUsage = new CpuUsage();
-            APP.cpuUsage.start();
-            this._starTelegramDaemon();
-            cluster.on('exit', this._handleClusterExit.bind(this));
-        } else if (cluster.isWorker) {
-            console.log('[WORKER] %s is running', process.pid);
-            cluster.worker.process.on('message', this._handleTelegramIncomingMsg.bind(this));
-        }
+    _configEngineProtocol(engine) {
+        engine.on('script:question:ready', this._handleQuestionReady.bind(this));
+        engine.on('script:apk:finish', this._handleFinishApk.bind(this));
+        engine.on('script:pdf:finish', this._handleFinishPdf.bind(this));
     }
 
     run() {
-        this._startClusterMode();
+        this._starTelegramDaemon();
     }
 
 }
