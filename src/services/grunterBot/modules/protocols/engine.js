@@ -45,10 +45,10 @@ class Engine extends Events {
         let script, value;
 
         let match = response.match(new RegExp(this.script.matcher, 'i'));
-        value = match[0].trim().toLowerCase();
-        if (!value) {
+        if (!match) {
             throw new Error();
         }
+        value = match[0].trim().toLowerCase();
 
         script = Object.assign({}, this.script);
         this.script = {};

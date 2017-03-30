@@ -9,6 +9,7 @@ class GrunterBot {
         SetGlobals.run();
         this.incomingMessage = {};
         this.users = {};
+        this.telegramBot = new TelegramDaemon();
     }
 
     _handleQuestionReady(id, question) {
@@ -28,15 +29,17 @@ class GrunterBot {
 
     _handleTelegramIncomingMsg(message) {
         if (!this.users[message.from.id]) {
+            this.users[message.from.id] = {};
             this.users[message.from.id].engine = new EngineProtocol();
             this._configEngineProtocol(this.users[message.from.id].engine);
-
+            this.users[message.from.id].engine.start(message.from.id);
+        } else {
+            this.users[message.from.id].lastMessage = {
+                'message': message,
+                create: new Date()
+            };
+            this.users[message.from.id].engine.next(message.from.id, message.text);
         }
-        this.users[message.from.id].lastMessage = {
-            'message': message,
-            create: new Date()
-        };
-        this.users[message.from.id].engine.next(message.from.id, message.text);
     }
 
     _starTelegramDaemon() {

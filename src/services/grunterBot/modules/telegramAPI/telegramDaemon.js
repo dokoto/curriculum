@@ -3,13 +3,13 @@
 const TelegramBot = require('node-telegram-bot');
 const EventEmitter = require('events');
 
-const TELEGRAM_TOKEN = '';
+const constants = require('../../constants');
 
 class TelegramDaemon extends EventEmitter {
     constructor() {
         super();
         this.telegramBot = new TelegramBot({
-            token: TELEGRAM_TOKEN
+            token: constants.TELEGRAM_TOKEN
         });
     }
 

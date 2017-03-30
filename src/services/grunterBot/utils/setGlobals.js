@@ -1,7 +1,7 @@
 'use strict';
 
 const util = require('util');
-const consts = require('../config/constants');
+const constants = require('../constants');
 const clc = require('cli-color');
 
 class SetGlobals {
@@ -19,23 +19,23 @@ class SetGlobals {
 
     static _consoleDebug(msg, ...args) {
         if (process.argv.indexOf('--verbose') !== -1) {
-            let header = util.format(clc.magenta('[%s] '), consts.APP_NAME);
+            let header = util.format(clc.magenta('[%s] '), constants.APP_NAME);
             console.log(util.format.apply(this, [].concat(header + msg, args)));
         }
     }
 
     static _consoleLog(msg, ...args) {
-        let header = util.format(clc.blue('[%s] '), consts.APP_NAME);
+        let header = util.format(clc.blue('[%s] '), constants.APP_NAME);
         console.log(util.format.apply(this, [].concat(header + msg, args)));
     }
 
     static _consoleError(msg, ...args) {
-        let header = util.format(clc.red('[%s] '), consts.APP_NAME);
+        let header = util.format(clc.red('[%s] '), constants.APP_NAME);
         console.log(util.format.apply(this, [].concat(header + msg, args)));
     }
 
     static _consoleWarn(msg, ...args) {
-        let header = util.format(clc.yellow('[%s] '), consts.APP_NAME);
+        let header = util.format(clc.yellow('[%s] '), constants.APP_NAME);
         console.log(util.format.apply(this, [].concat(header + msg, args)));
     }
 
