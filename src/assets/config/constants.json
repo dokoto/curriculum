@@ -8,5 +8,5 @@
     "BUILD_DATE": "",
     "MODE": "dev",
     "MOCKS": false,
-    "DEVICE_TYPE": "SCREEN"
+    "DEVICE_TYPE": "SCREEN"    
 }

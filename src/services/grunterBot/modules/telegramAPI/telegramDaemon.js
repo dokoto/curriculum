@@ -27,12 +27,16 @@ class TelegramDaemon extends EventEmitter {
         this.telegramBot.sendPhoto(options, () => this.emit('daemon:image:sent'));
     }
 
+    sendDocument(options) {
+        this.telegramBot.sendDocument(options, () => this.emit('daemon:doc:sent'));
+    }
+
     sendMessage(options) {
         this.telegramBot.sendMessage(options, () => this.emit('daemon:message:sent'));
     }
 
     _handleOnIncoming(message) {
-        console.log('[WORKER] Normal incoming message from telegram');
+        console.printf('[WORKER] Normal incoming message from telegram: %s', message.text);
         this.emit('daemon:incoming:mesage', message);
     }
 

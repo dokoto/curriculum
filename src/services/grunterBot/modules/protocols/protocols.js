@@ -18,14 +18,14 @@ Los comandos que estan siempre a tu disposicion son:
 "cv": Te guiare para que obtengas una copia del cv de Manuel Alfaro Sierra en  pdf o en una App para android.
 "consulta": Donde atraves de preguntas te dare informacion del cv de Manuel.`,
         'error': 'Que embarazoso.. no te he entendido puedes tratar de repetirlo ?',
-        'matcher': '\\bcv\\b|\\bconsulta\\b|\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b|\\bayuda\\b',
+        'matcher': '\\bcv\\b|\\bconsulta\\b|\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b|\\bayuda\\b',
         'valueName': 'docType',
         'next': 'matcher'
     },
     'cv': {
         'question': 'En que formato lo quieres "apk" o "pdf" ?',
-        'error': 'Disculpame soy algo joven.. No he entendio que deseas "apk" o "pdf" ?',
-        'matcher': '\\bapk\\b|\\bpdf\\b',
+        'error': 'Disculpame soy algo joven.. No he entendio que deseas "apk", "ipa" o "pdf" ?',
+        'matcher': '\\bapk\\b|\\bpdf\\b|\\bipa\\b',
         'valueName': 'docType',
         'next': 'matcher'
     },
@@ -45,17 +45,24 @@ Los comandos que estan siempre a tu disposicion son:
         'next': 'matcher'
     },
     'email': [{
-        'question': 'Sin problemas en breve te llegara un correo con el cv en pdf, puedes darme tu email ?',
+        'question': 'Sin problemas, puedes darme tu email ?',
         'error': 'Disculpame soy algo joven.. Pero el email parece erroneo. Puedes escribirlo de nuevo ?',
         'matcher': '^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
         'valueName': 'email',
-        'next': 'question',
-        'triggerEvent': 'script:pdf:finish'
+        'next': 'question'
     }, {
         'question': 'Ya esta enviado, . Te gustaria hacer algo mas ? Puesdes pedir la "ayuda" ',
         'error': 'Disculpame soy algo duro de oido.. Sino sabes que hacer pide la ayuda ?',
         'matcher': '\\bcv\\b|\\bconsulta\\b',
         'valueName': 'optionMenu',
+        'triggerEvent': 'script:pdf:finish',
+        'next': 'matcher'
+    }],
+    'ipa': [{
+        'question': 'No me es posible por el momento generar IPAs para IOS. Me estoy ejecutando sobre GNU/Linux y no puedo usar el SDK de Apple.. Sorry. Quires una "apk" o "pdf" ?',
+        'error': 'Disculpame soy algo joven.. No he entendio que deseas "apk" o "pdf" ?',
+        'matcher': '\\bapk\\b|\\bpdf\\b',
+        'valueName': 'docType',
         'next': 'matcher'
     }],
     'apk': [{
@@ -85,9 +92,9 @@ Los comandos que estan siempre a tu disposicion son:
         'next': 'matcher'
     }],
     'consulta': {
-        'question': 'Hola, puedes consultar: "Datos personales", "skills", "educacion", "experiencia reciente", "experiencia completa"',
-        'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", "experiencia completa" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'question': 'Hola, puedes consultar: "Datos personales", "skills", "educacion", "resumen experiencia", "experiencia reciente"',
+        'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "resumen experiencia", "experiencia reciente" o "ayuda"?',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     },
@@ -101,8 +108,8 @@ https://www.linkedin.com/in/manuel-alfaro-sierra-538b824b
 Creativo y curioso sería la mejor forma de definir mis actitudes.
 Me encanta investigar y usar las tecnologías más actuales de la forma más estable posible.
 `,
-        'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", "experiencia completa" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "resumen experiencia", "experiencia reciente" o "ayuda"?',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     },
@@ -134,7 +141,7 @@ LANGUAJES
 English         2
 `,
         'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", ""experiencia reciente detallada" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     },
@@ -144,13 +151,12 @@ Edexcel BTEC Level 5
 Nota media de 7,5
 `,
         'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", ""experiencia reciente detallada" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     },
-    'experiencia reciente': {
-        'question': `EXPERIENCIA RECIENTE
-[2014 - presente]
+    'resumen experiencia': {
+        'question': `[2014 - presente]
 PROGRAMER ANALYST
 FRONTEND HYBRID DEV
 Desarrollo de aplicaciones hibridas para tablets. Programadas con Javascript, HTML5, CSS y algo de nativo en Java y Objective-C.
@@ -162,13 +168,12 @@ ABAP DEV/ANDROID NATIVE DEV
 Tres años desarrollando pequeñas y medianas apps en Android nativo. Y alrededor de 9 años desarrollando soluciones sobre la plataforma SAP.
 `,
         'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", ""experiencia reciente detallada" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     },
-    'experiencia completa': {
-        'question': `EXPERIENCIA RECIENTE DETALLADA
-Slideshow [ASLAM PARA PSA] Arquitecto técnico y desarrollador 10/2016-02/2017
+    'experiencia reciente': {
+        'question': `Slideshow [ASLAM PARA PSA] Arquitecto técnico y desarrollador 10/2016-02/2017
 Aplicación destinada a salones como el de Ginebra y concesionarios. Se usa para mostrar gamas de coches en alta definición en modo carrusel.
 Esta aplicación web funciona como un servicio, una vez levantada se conecta a un websocket y queda a la espera del coche que se desea mostrar.
 Luego desde aplicativos móviles y de PC lo usuarios envían el modelo que desea presentar en alta definición a través del canal.
@@ -214,7 +219,7 @@ Este grunt genera la web app minificada. Este mismo grunt se llama desde la app 
 - moment
 `,
         'error': 'Disculpame soy algo duro de oido.. Deseas ver mis "Datos personales", "skills", "educacion", "experiencia reciente", "experiencia reciente detallada" o "ayuda"?',
-        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bexperiencia\\sreciente\\b|\\bexperiencia\\scompleta\\b',
+        'matcher': '\\bdatos\\spersonales\\b|\\bskills\\b|\\beducacion\\b|\\bresumen\\sexperiencia\\b|\\bexperiencia\\sreciente\\b',
         'valueName': 'queryOption',
         'next': 'matcher'
     }

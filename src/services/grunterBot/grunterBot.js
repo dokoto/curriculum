@@ -3,6 +3,8 @@
 const SetGlobals = require('./utils/setGlobals');
 const TelegramDaemon = require('./modules/telegramAPI/telegramDaemon');
 const EngineProtocol = require('./modules/protocols/engine');
+const path = require('path');
+const Mailer = require('./utils/mailer');
 
 class GrunterBot {
     constructor() {
@@ -10,6 +12,7 @@ class GrunterBot {
         this.incomingMessage = {};
         this.users = {};
         this.telegramBot = new TelegramDaemon();
+        this.mailer = new Mailer();
     }
 
     _handleQuestionReady(id, question) {
@@ -20,11 +23,25 @@ class GrunterBot {
     }
 
     _handleFinishApk(id, values) {
-
+        console.printf('APK values %s', JSON.stringify(values));
     }
 
     _handleFinishPdf(id, values) {
+        console.printf('PDF values %s', JSON.stringify(values));
+        this._managePDFSend(id, values);
+    }
 
+    _managePDFSend(id, values) {
+        if (values.transport === 'chat') {
+            this.telegramBot.sendDocument({
+                chat_id: id,
+                files: {
+                    document: path.join(process.cwd(), 'src/assets/cv/es/cv.pdf')
+                }
+            });
+        } else if (values.transport === 'email') {
+            this.mailer.send('dokoto.moloko@gmail', null, 'TEST BOT', 'BODY TEST BOT');
+        }
     }
 
     _handleTelegramIncomingMsg(message) {

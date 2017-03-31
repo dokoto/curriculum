@@ -52,7 +52,7 @@ class Engine extends Events {
 
         script = Object.assign({}, this.script);
         this.script = {};
-        this.values[this.script.valueName] = value;
+        this.values[script.valueName] = value;
 
         return [script, value];
     }
@@ -60,19 +60,19 @@ class Engine extends Events {
     _processResponse(id, response) {
         let script = {};
         try {
-            if (this._checkDirectCommands(response)) return;
-            let [script, value] = this._extractCommand(response);
-            this._resolveCommand(script, value);
+            if (!this._checkDirectCommands(response)) {
+                let [script, value] = this._extractCommand(response);
+                this._resolveCommand(script, value);
+            }
+            if (this.script.triggerEvent) {
+                this.emit(this.script.triggerEvent, id, this.values);
+            }
+            this.emit('script:question:ready', id, this.script.question);
         } catch (err) {
             console.debug('regex: %s', this.script.matcher);
             console.debug('string: %s', response);
             console.error(err.stack);
             this.emit('script:question:ready', id, this.script.error);
-        } finally {
-            if (script.triggerEvent) {
-                this.emit(script.triggerEvent, id, this.values);
-            }
-            this.emit('script:question:ready', id, this.script.question);
         }
     }
 
