@@ -8,5 +8,13 @@
     "BUILD_DATE": "",
     "MODE": "dev",
     "MOCKS": false,
-    "DEVICE_TYPE": "SCREEN"    
+    "DEVICE_TYPE": "SCREEN",
+    "TELEGRAM_TOKEN": "341498560:AAEeqZZw8QoMvkAWEll51j3OdIXEzZtkzuQ",
+    "GMAIL": {
+        "SCOPES": ["https://mail.google.com/",
+            "https://www.googleapis.com/auth/gmail.compose"
+        ],
+        "SECRET_PATH": "client_secret_gmail_api.json",
+        "TOKEN_PATH": ".credentials/token_gmail.json"
+    }
 }

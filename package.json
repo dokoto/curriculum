@@ -60,6 +60,7 @@
     "jquery": "^3.2.1",
     "js-base64": "^2.1.9",
     "json-loader": "^0.5.4",
+    "mailparser": "^2.0.2",
     "method-override": "^2.3.7",
     "moment": "^2.15.1",
     "node-telegram-bot": "^0.1.9",

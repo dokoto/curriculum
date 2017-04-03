@@ -96,6 +96,7 @@ var doMap = {
             }
         }
 
+        data.args.greetings = (grunt.option('greetings') || 'Gracias por tu interes, seas quien seas :)');
         data.args.mocks = utils.misc.convBoolean(grunt.option, 'mocks', false);
         data.args.verbose = utils.misc.convBoolean(grunt.option, 'verbose', false);
 
@@ -156,7 +157,7 @@ function mainProcess(grunt, data) {
 
 exports.doMap = function(grunt) {
 
-    // GLOBAL    
+    // GLOBAL
     var data = doMap.global(grunt);
     if (process.argv.length === 2) {
         data.args = {};

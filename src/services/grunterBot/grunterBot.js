@@ -5,6 +5,7 @@ const TelegramDaemon = require('./modules/telegramAPI/telegramDaemon');
 const EngineProtocol = require('./modules/protocols/engine');
 const path = require('path');
 const Mailer = require('./utils/mailer');
+const GrunterCli = require('../../grunterCli/grunter-cli');
 
 class GrunterBot {
     constructor() {
@@ -13,6 +14,7 @@ class GrunterBot {
         this.users = {};
         this.telegramBot = new TelegramDaemon();
         this.mailer = new Mailer();
+        this.grunter = new GrunterCli();
     }
 
     _handleQuestionReady(id, question) {
@@ -24,6 +26,9 @@ class GrunterBot {
 
     _handleFinishApk(id, values) {
         console.printf('APK values %s', JSON.stringify(values));
+        values.verbose = (values.mode === 'dev');
+        values.mocks = false;
+        this.grunter.run(values);
     }
 
     _handleFinishPdf(id, values) {
@@ -40,7 +45,9 @@ class GrunterBot {
                 }
             });
         } else if (values.transport === 'email') {
-            this.mailer.send('dokoto.moloko@gmail', null, 'TEST BOT', 'BODY TEST BOT');
+            this.mailer.send([values.email], [], '[@maunelAlfaroBot] CV Manuel Alfaro Sierra',
+                'Hola, te adjunto el CV de Manuel en formato pdf como hemos hablado. Un saludo y gracias por la oportunidad.',
+                path.join(process.cwd(), 'src/assets/cv/es/cv.pdf'));
         }
     }
 

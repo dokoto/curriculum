@@ -3,7 +3,7 @@
 const TelegramBot = require('node-telegram-bot');
 const EventEmitter = require('events');
 
-const constants = require('../../constants');
+const constants = require('../../../../assets/config/constants');
 
 class TelegramDaemon extends EventEmitter {
     constructor() {

@@ -21,6 +21,7 @@
         "global": true,
         "sprintf": true,
         "exports": true,
-        "printf": true
+        "printf": true,
+        "Buffer": true
     }
 }

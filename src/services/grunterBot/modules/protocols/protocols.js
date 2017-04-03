@@ -66,9 +66,9 @@ Los comandos que estan siempre a tu disposicion son:
         'next': 'matcher'
     }],
     'apk': [{
-        'question': 'En modo te gustaria compilar la apk, en "release" o "debug" ?',
-        'error': 'Disculpame soy algo joven.. No he entendio que deseas "release" o "debug" ?',
-        'matcher': '\\brelease\\b|\\bdebug\\b',
+        'question': 'En modo te gustaria compilar la apk, en "prod" o "dev" ?',
+        'error': 'Disculpame soy algo joven.. No he entendio que deseas "prod" o "dev" ?',
+        'matcher': '\\bprod\\b|\\bdev\\b',
         'valueName': 'mode',
         'next': 'question'
     }, {

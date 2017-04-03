@@ -9,11 +9,15 @@ class GrunterCli {
     constructor(options) {
         this.options = {};
         this.gruntpath = null;
-        process.argv.push(sprintf('--versionApp=%s', options.versionapp));
-        process.argv.push(sprintf('--mocks=%s', options.mocks));
-        process.argv.push(sprintf('--verbose=%s', options.verbose));
-        process.argv.push(sprintf('--mode=%s', options.mode));
-        process.argv.push(options.task);
+    }
+
+    _configureParams(params) {
+        process.argv.push(sprintf('--versionApp=%s', params.versionApp));
+        process.argv.push(sprintf('--mocks=%s', params.mocks));
+        process.argv.push(sprintf('--verbose=%s', params.verbose));
+        process.argv.push(sprintf('--mode=%s', params.mode));
+        process.argv.push(sprintf('--greetings=%s', params.greetings));
+        process.argv.push(params.task);
         console.debug('%s', JSON.stringify(process.argv));
     }
 
@@ -35,7 +39,8 @@ class GrunterCli {
         });
     }
 
-    run() {
+    run(params) {
+        this._configureParams(params);
         this._configure();
         require(this.gruntpath).cli();
     }

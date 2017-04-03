@@ -1,7 +1,7 @@
 'use strict';
 
 const util = require('util');
-const constants = require('../constants');
+const constants = require('../../../assets/config/constants');
 const clc = require('cli-color');
 
 class SetGlobals {
