@@ -10,10 +10,8 @@ module.exports = function(grunt, options) {
     return {
         dev: {
             cache: false,
-            debug: true,
             devtool: 'source-map',
-            constext: __dirname + '/src/web',
-            entry: './src/web/js/main.js',
+            entry: './src/web/js/app.js',
             output: {
                 devtoolLineToLine: true,
                 path: 'builds/core/dev/',
@@ -39,13 +37,10 @@ module.exports = function(grunt, options) {
                 publicPath: options.args.verbose
             },
 
-            storeStatsTo: "webpackStatus",
             progress: false,
-            failOnError: true,
-            inline: true,
 
             module: {
-                loaders: [{
+                rules: [{
                     test: /\.html$/,
                     loader: "underscore-template-loader"
                 }, {
@@ -53,10 +48,10 @@ module.exports = function(grunt, options) {
                     loader: "style-loader!css-loader"
                 }, {
                     test: /\.scss$/,
-                    loaders: ["style", "css", "sass"]
+                    use: ["style", "css", "sass"]
                 }, {
                     test: /.*\.(png|woff|woff2|eot|ttf|svg|gif|jpe?g)$/i,
-                    loaders: [
+                    use: [
                         'file?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
                         'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
@@ -70,6 +65,9 @@ module.exports = function(grunt, options) {
             },
 
             plugins: [
+                new webpack.LoaderOptionsPlugin({
+                    debug: true
+                }),
                 new webpack.HotModuleReplacementPlugin(),
                 new webpack.ProvidePlugin({
                     $: "jquery",
@@ -82,17 +80,14 @@ module.exports = function(grunt, options) {
                 })
             ],
             resolve: {
-                modulesDirectories: ['./node_modules'],
-                root: './src'
+                modules: [__dirname, './src']
             },
             resolveLoader: {
-                root: './node_modules'
+                modules: [__dirname, './node_modules']
             }
 
         },
         prod: {
-            debug: false,
-            constext: __dirname + '/src/web',
             entry: './src/web/js/main.js',
             output: {
                 path: "builds/core/prod/",
@@ -116,12 +111,9 @@ module.exports = function(grunt, options) {
                 warnings: options.args.verbose,
                 publicPath: options.args.verbose
             },
-            storeStatsTo: "webpackStatus",
             progress: true,
-            failOnError: true,
-            inline: true,
             module: {
-                loaders: [{
+                rules: [{
                     test: /\.html$/,
                     loader: "underscore-template-loader"
                 }, {
@@ -129,10 +121,10 @@ module.exports = function(grunt, options) {
                     loader: "style-loader!css-loader"
                 }, {
                     test: /\.scss$/,
-                    loaders: ["style", "css", "sass"]
+                    use: ["style", "css", "sass"]
                 }, {
                     test: /.*\.(png|woff|woff2|eot|ttf|svg|gif|jpe?g)$/i,
-                    loaders: [
+                    use: [
                         'file?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
                         'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
@@ -146,15 +138,19 @@ module.exports = function(grunt, options) {
                     test: /\.js$/,
                     exclude: /(node_modules|bower_components)/,
                     loader: 'babel', // 'babel-loader' is also a legal name to reference
-                    query: {
+                    options: {
                         plugins: ['transform-runtime'],
                         presets: ['es2015']
                     }
                 }]
             },
             plugins: [
+                new webpack.LoaderOptionsPlugin({
+                    debug: false
+                }),
                 new webpack.optimize.DedupePlugin(),
                 new webpack.optimize.UglifyJsPlugin({
+                    sourceMap: true,
                     compressor: {
                         screw_ie8: true,
                         warnings: false
@@ -178,11 +174,10 @@ module.exports = function(grunt, options) {
                 })
             ],
             resolve: {
-                modulesDirectories: ['./node_modules'],
-                root: './src'
+                modules: [__dirname, './src']
             },
             resolveLoader: {
-                root: './node_modules'
+                modules: [__dirname, './node_modules']
             }
         }
     };

@@ -15,7 +15,8 @@ module.exports = function(grunt, options) {
 
         grunt.log.writeln(' ');
         grunt.log.writeln('[Opciones para DESARROLLO] >');
-        grunt.log.writeln('*mocks          : Activa los mocks o objetos simulados ej: --mocks=[false: sin mocks(por defecto), true: con mocks]');
+        grunt.log.writeln('mocks          : Activa los mocks o objetos simulados ej: --mocks=[false: sin mocks(por defecto), true: con mocks]');
+        grunt.log.writeln('greetings      : Texto de agradecimiento');
 
         grunt.log.writeln(' ');
         grunt.log.writeln('[Lista de tareas] >');

@@ -136,6 +136,7 @@ function header(grunt, data) {
     grunt.log.writeln('Mock actived      : ' + data.args.mocks);
     grunt.log.writeln('Build Date        : ' + data.args.builddate);
     grunt.log.writeln('Verbose           : ' + data.args.verbose);
+    grunt.log.writeln('Greetings         : ' + data.args.greetings);
     grunt.log.writeln('**********************************************************************');
 }
 
