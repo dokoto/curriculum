@@ -7,5 +7,6 @@
     "BUILD_DATE": "",
     "MODE": "dev",
     "MOCKS": true,
-    "GREETINGS": ""
+    "GREETINGS": "",
+    "OS": ""
 }

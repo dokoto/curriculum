@@ -96,6 +96,11 @@ var doMap = {
             }
         }
 
+        data.args.os = (grunt.option('os') || 'android').toLowerCase();
+        if (validParams.args.os.indexOf(data.args.os) === -1) {
+            grunt.fail.fatal('El parametro --os=' + data.args.os + ' solo puede contener los valores: ' + validParams.args.os);
+        }
+
         data.args.lang = (grunt.option('lang') || 'es').toLowerCase();
         if (validParams.args.lang.indexOf(data.args.lang) === -1) {
             grunt.fail.fatal('El parametro --lang=' + data.args.lang + ' solo puede contener los valores: ' + validParams.args.lang);

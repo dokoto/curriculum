@@ -11,6 +11,7 @@ module.exports = function(grunt, options) {
         grunt.log.writeln('[Opciones *:parametro obligatorio] >');
         grunt.log.writeln('*versionApp     : Version a generar ej: --versionApp=0.3.3');
         grunt.log.writeln('*mode           : Tipo de compilacion ej: --mode=[dev(por defecto)|prod]');
+        grunt.log.writeln('os              : Sistema operativo nativo ej: --os=[android(por defecto)|ios]');
         grunt.log.writeln('verbose         : Log ampliado ej: --verbose=[false(por defecto)|true]');
 
         grunt.log.writeln(' ');

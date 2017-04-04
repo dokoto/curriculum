@@ -3,6 +3,22 @@
 module.exports = function(grunt, options) {
 
     return {
+        compiled_sources: {
+            files: [{
+                expand: true,
+                cwd: 'builds/web/<%=args.target%>/',
+                src: ['**/*'],
+                dest: 'builds/native/<%=args.target%>/<%=pkg.name%>/www/'
+            }]
+        },
+        android_assets: {
+            files: [{
+                expand: true,
+                cwd: 'assets/<%=args.os<%>/icons/',
+                src: ['**/*'],
+                dest: 'builds/native/<%=args.target%>/<%=pkg.name%>/platforms/<%=args.os%>/res/'
+            }]
+        },
         constants: {
             files: [{
                 expand: true,

@@ -8,7 +8,14 @@ module.exports = function(grunt, options) {
         'clean:builds',
         'copy:constants',
         'webpack:dev',
-        'create-index'
+        'create-index',
+        'cordovacli:create',
+        'cordova-settings',
+        'cordovacli:add_platforms',
+        'cordovacli:add_plugins',
+        'copy:android_assets',
+        'copy:compiled_sources',
+        'cordovacli:build_android'
     ];
 
     var build_full_prod = [

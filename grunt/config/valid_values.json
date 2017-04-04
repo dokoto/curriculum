@@ -1,6 +1,7 @@
 {
     "args": {
         "mode": ["dev", "prod"],
-        "lang": ["es", "en"]
+        "lang": ["es", "en"],
+        "os": ["android", "ios"]
     }
 }
