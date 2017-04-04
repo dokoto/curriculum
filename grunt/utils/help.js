@@ -17,6 +17,7 @@ module.exports = function(grunt, options) {
         grunt.log.writeln('[Opciones para DESARROLLO] >');
         grunt.log.writeln('mocks          : Activa los mocks o objetos simulados ej: --mocks=[false: sin mocks(por defecto), true: con mocks]');
         grunt.log.writeln('greetings      : Texto de agradecimiento');
+        grunt.log.writeln('lang           : Idioma de la app');
 
         grunt.log.writeln(' ');
         grunt.log.writeln('[Lista de tareas] >');
@@ -24,7 +25,7 @@ module.exports = function(grunt, options) {
 
         grunt.log.writeln(' ');
         grunt.log.writeln('[CONSTRUCCION] >');
-        grunt.log.writeln('build-web       : Crea la web app".');
-        grunt.log.writeln('build-native    : Crea la app nativa firmada".');
+        grunt.log.writeln('web       : Crea la web app".');
+        grunt.log.writeln('native    : Crea la app nativa firmada".');
     });
 };

@@ -14,5 +14,5 @@ module.exports = function(grunt) {
     });
 
     grunt.loadTasks('grunt/utils');
-    //grunt.loadTasks('grunt/tasks');
+    grunt.loadTasks('grunt/tasks');
 };

@@ -44,11 +44,10 @@ class Router extends Marionette.AppRouter {
                 'name': params.name,
                 'path': params.path
             });
-        }
-
-        if (APP.router.history.length > 2 && APP.router.history[APP.router.history.length - 1].path === 'go:chat') {
-            params.path = APP.router.history[APP.router.history.length - 2].path;
-            params.name = APP.router.history[APP.router.history.length - 2].name;
+            if (APP.router.history.length > 2 && APP.router.history[APP.router.history.length - 1].path === 'go:chat') {
+                params.path = APP.router.history[APP.router.history.length - 2].path;
+                params.name = APP.router.history[APP.router.history.length - 2].name;
+            }
         }
 
         return params;

@@ -1,12 +1,11 @@
 {
     "APP_NAME": "CURRICULUM",
     "APP_DESCRIPTION": "Curriculum Vitae - Manuel Alfaro Sierra",
-    "BOOT_FILE": "bootCV.js",
     "BUILD_FOLDER": "build/",
     "SOURCES_FOLDER": "src",
     "VERSION_APP": "0.0.1",
     "BUILD_DATE": "",
     "MODE": "dev",
     "MOCKS": true,
-    "DEVICE_TYPE": "SCREEN"
+    "GREETINGS": ""
 }

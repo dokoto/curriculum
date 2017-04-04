@@ -1,5 +1,6 @@
 {
     "args": {
-        "mode": ["dev", "prod"]
+        "mode": ["dev", "prod"],
+        "lang": ["es", "en"]
     }
 }

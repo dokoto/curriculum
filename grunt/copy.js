@@ -1,17 +1,8 @@
-
 'use strict';
 
 module.exports = function(grunt, options) {
 
     return {
-        materialize_bem: {
-            files: [{
-                expand: true,
-                cwd: 'node_modules/materialize-css/',
-                src: ['fonts/roboto/**/*', 'sass/components/**/*'],
-                dest: 'src/css/bem/vendor/materialize/'
-            }]
-        },
         constants: {
             files: [{
                 expand: true,
@@ -28,10 +19,13 @@ module.exports = function(grunt, options) {
                         for (let key in constsToModify) {
                             if (options.args[key.toLowerCase()] !== undefined) {
                                 builtConsts[key] = options.args[key.toLowerCase()];
+                            } else if (options.base[key.toLowerCase()] !== undefined) {
+                                builtConsts[key] = options.base[key.toLowerCase()];
                             } else {
                                 builtConsts[key] = constsToModify[key];
                             }
                         }
+                        //grunt.log.writeln(JSON.stringify(builtConsts));
                         return JSON.stringify(builtConsts);
                     } catch (error) {
                         grunt.log.error(error);
@@ -39,14 +33,6 @@ module.exports = function(grunt, options) {
                     }
                 }
             }
-        },
-        maven: {
-            files: [{
-                expand: true,
-                cwd: 'builds/core/<%=args.mode%>/',
-                src: ['**/*'],
-                dest: 'builds/maven/<%=args.mode%>/main/webapp/'
-            }]
         }
     };
 };

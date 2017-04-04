@@ -5,18 +5,21 @@ module.exports = function(grunt, options) {
         'copy:constants',
         'jshint',
         'mkdir:builds',
-        'clean:web_builds',
-        'webpack:dev'
+        'clean:builds',
+        'copy:constants',
+        'webpack:dev',
+        'create-index'
     ];
 
     var build_full_prod = [
         'copy:constants',
         'jshint',
         'mkdir:builds',
-        'clean:web_builds',
-        'webpack:prod'
+        'clean:builds',
+        'copy:constants',
+        'webpack:prod',
+        'create-index'
     ];
-
 
     function resolve(task, args) {
         let tasker = [];
@@ -26,11 +29,6 @@ module.exports = function(grunt, options) {
         } else if (args.mode === 'prod') {
             tasker = build_full_prod.slice();
         }
-        switch (task) {
-            case 'build-maven':
-                tasker.push('copy:maven');
-                break;
-        }
 
         return tasker;
     }
@@ -39,8 +37,8 @@ module.exports = function(grunt, options) {
     if (options && options.args) {
         let tasks = {
             'default': ['help'],
-            'build-web': resolve('build-web', options.args),
-            'build-native': resolve('build-native', options.args),
+            'web': resolve('web', options.args),
+            'native': resolve('native', options.args),
         };
 
         return tasks;

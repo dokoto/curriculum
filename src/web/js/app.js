@@ -2,8 +2,8 @@
 
 const Backbone = require('backbone');
 const Marionette = require('backbone.marionette');
-const AppRouter = require('./routers/app_router');
-const AppController = require('./controllers/app_controller');
+const AppRouter = require('./app_router');
+const AppController = require('./app_controller');
 
 class App extends Marionette.Application {
     constructor() {

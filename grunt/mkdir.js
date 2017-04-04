@@ -5,7 +5,7 @@ module.exports = function(grunt, options) {
     return {
         builds: {
             options: {
-                create: ['builds/core/dev', 'builds/core/prod']
+                create: ['builds/web/dev', 'builds/web/prod', 'builds/native/dev', 'builds/native/prod']
             }
         }
     };

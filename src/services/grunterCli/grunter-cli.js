@@ -16,6 +16,7 @@ class GrunterCli {
         process.argv.push(sprintf('--mocks=%s', params.mocks));
         process.argv.push(sprintf('--verbose=%s', params.verbose));
         process.argv.push(sprintf('--mode=%s', params.mode));
+        process.argv.push(sprintf('--lang=%s', 'es'));
         process.argv.push(sprintf('--greetings=%s', params.greetings));
         process.argv.push(params.task);
         console.debug('%s', JSON.stringify(process.argv));

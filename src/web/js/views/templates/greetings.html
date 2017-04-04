@@ -1,3 +1,28 @@
-<div id="greetings-page" class="page page-greetings">
-    <p class="test-greetings"><%=greetings%></p>
-</div>
+<section id="app-region" class="container">
+    <header class="header-greetings">
+        <div class="header-greetings-up"></div>
+        <div class="header-greetings-down"></div>
+        <a href="https://www.linkedin.com/in/manuel-alfaro-sierra-538b824b/">
+            <img class="picture-profile picture-profile-position picture-profile-shape" src="../../../assets/img/profile.jpg" alt="Profile picture" />
+        </a>
+    </header>
+    <main class="body-greetings">
+        <ul class='body-greetings-list'>
+            <li class="title">
+                <%=title%>
+            </li>
+            <li class="build-date details">
+                <%=build_date%>
+            </li>
+            <li class="version details">
+                <%=version%>
+            </li>
+        </ul>
+        <p class="body-greeting-text">
+            <%=greetings%>
+        </p>
+        <nav class="body-greetings-bot">
+            <a class="body-greeting-bot-link" href="tg://resolve?domain=manuelAlfaroBot">Open Bot @manuelAlfaroBot</a>
+        </nav>
+    </main>
+</section>

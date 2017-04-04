@@ -14,8 +14,7 @@ module.exports = function(grunt, options) {
             entry: './src/web/js/app.js',
             output: {
                 devtoolLineToLine: true,
-                path: 'builds/core/dev/',
-                publicPath: '../../',
+                path: path.join(__dirname, '../builds/<%=args.target%>/<%=args.mode%>/'),
                 filename: "<%=base.appName%>.js",
                 pathinfo: true,
                 sourceMapFilename: "<%=base.appName%>.js.map",
@@ -44,16 +43,19 @@ module.exports = function(grunt, options) {
                     test: /\.html$/,
                     loader: "underscore-template-loader"
                 }, {
-                    test: /\.css$/,
-                    loader: "style-loader!css-loader"
-                }, {
                     test: /\.scss$/,
-                    use: ["style", "css", "sass"]
+                    use: [{
+                        loader: "style-loader" // creates style nodes from JS strings
+                    }, {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }, {
+                        loader: "sass-loader" // compiles Sass to CSS
+                    }]
                 }, {
                     test: /.*\.(png|woff|woff2|eot|ttf|svg|gif|jpe?g)$/i,
                     use: [
-                        'file?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
-                        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+                        'file-loader?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
+                        'image-webpack-loader?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
                 }, {
                     test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
@@ -80,18 +82,14 @@ module.exports = function(grunt, options) {
                 })
             ],
             resolve: {
-                modules: [__dirname, './src']
-            },
-            resolveLoader: {
-                modules: [__dirname, './node_modules']
+                modules: [path.join(__dirname, './src'), 'node_modules']
             }
 
         },
         prod: {
             entry: './src/web/js/main.js',
             output: {
-                path: "builds/core/prod/",
-                publicPath: '../../',
+                path: path.join(__dirname, '../builds/<%=args.target%>/<%=args.mode%>/'),
                 filename: "<%=base.appName%>.js",
             },
 
@@ -174,10 +172,7 @@ module.exports = function(grunt, options) {
                 })
             ],
             resolve: {
-                modules: [__dirname, './src']
-            },
-            resolveLoader: {
-                modules: [__dirname, './node_modules']
+                modules: [path.join(__dirname, './src'), 'node_modules']
             }
         }
     };

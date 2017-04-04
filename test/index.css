@@ -1,0 +1,113 @@
+body, html {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    font-family: monospace;
+}
+
+.header-greetings {
+    height: 30%;
+    position: relative;
+}
+
+.header-greetings-up {
+    height: 80%;
+    background-image: url(profile_bg.jpg);
+}
+
+.header-greetings-down {
+    height: 20%;
+}
+
+@media all and (min-width: 0px) and (max-width: 480px) {
+    .picture-profile {
+        width: 100px;
+        height: 100px;
+        top: 50%;
+        left: 50%;
+        margin-top: 0;
+        margin-left: -50px;
+    }
+    .body-greetings-list .title {
+        font-size: x-large;
+    }
+    .body-greeting-text {
+        font-size: x-large;
+        font-family: sans-serif;
+        color: teal;
+        font-stretch: condensed;
+        font-weight: bold;
+        box-sizing: border-box;
+        padding: 4px;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 1920px) {
+    .picture-profile {
+        width: 200px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+    }
+    .body-greetings-list .title {
+        font-size: xx-large;
+    }
+    .body-greeting-text {
+        font-size: xx-large;
+        font-family: sans-serif;
+        color: teal;
+        font-stretch: condensed;
+        font-weight: bold;
+        box-sizing: border-box;
+        padding: 4px;
+    }
+}
+
+.picture-profile-position {
+    position: absolute;
+}
+
+.picture-profile-shape {
+    border-radius: 100%;
+    border-width: 5px;
+    border: solid;
+    border-color: white;
+}
+
+.body-greetings {
+    height: 70%;
+    text-align: center;
+    padding-top: 2%;
+}
+
+.body-greetings-list {
+    list-style-type: none;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.body-greetings-list .details {
+    font-size: medium;
+    color: cadetblue;
+}
+
+.body-greeting-bot-link {
+    text-decoration: none;
+    color: #3ca2d9;
+}
+
+.body-greetings-bot {
+    position: absolute;
+    bottom: 5%;
+    text-align: center;
+    width: 100%;
+}
