@@ -22,6 +22,7 @@
         "sprintf": true,
         "exports": true,
         "printf": true,
-        "Buffer": true
+        "Buffer": true,
+        "screen": true
     }
 }

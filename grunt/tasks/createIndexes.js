@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
     let options = grunt.config.data;
     grunt.registerTask('create-index', function() {
-        let pathfolder = path.join(process.cwd(), 'builds/', options.args.target, options.args.mode);
+        let pathfolder = path.join(process.cwd(), 'builds/web', options.args.mode);
         const indexTpl = fs.readFileSync(path.join(process.cwd(), 'grunt/templates/index.html'), {
             encoding: 'utf8'
         });

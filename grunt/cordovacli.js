@@ -1,10 +1,11 @@
 'use strict';
 
 module.exports = function(grunt, options) {
+    const path = require('path');
 
     return {
         options: {
-            path: 'builds/bin/<%=args.mode%>/<%=pkg.name%>',
+            path: 'builds/native/<%=args.mode%>/<%=pkg.name%>',
             cli: 'cordova'
         },
         cordova: {
@@ -12,7 +13,7 @@ module.exports = function(grunt, options) {
                 command: ['create', 'platform', 'plugin', 'build'],
                 platforms: ['ios', 'android'],
                 plugins: ['device', 'dialogs'],
-                path: 'builds/bin/<%=args.mode%>/<%=pkg.name%>',
+                path: 'builds/native/<%=args.mode%>/<%=pkg.name%>',
                 id: '<%=cordova.domain%>.<%=cordova.mainClassName%>',
                 name: '<%=pkg.name%>'
             }

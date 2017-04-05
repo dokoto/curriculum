@@ -1,0 +1,16 @@
+{
+    "cmd": "cordova",
+    "destinationFolderName": "cvAssistantManuel",
+    "mainClassName": "cvassitant",
+    "domain": "org.manuel",
+    "configFile": "config.xml",
+    "android": {
+        "androidManifest": "platforms/android/AndroidManifest.xml",
+        "cleanCmd": "/platforms/android/cordova/clean",
+        "gradleUrl": "https://services.gradle.org/distributions/gradle-2.2.1-all.zip",
+        "apkFileName": "CvAssistanManuel"
+    },
+    "ios": {
+        "ipaFileName": "CvAssistanManuel"
+    }
+}

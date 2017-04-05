@@ -6,17 +6,17 @@ module.exports = function(grunt, options) {
         compiled_sources: {
             files: [{
                 expand: true,
-                cwd: 'builds/web/<%=args.target%>/',
+                cwd: 'builds/web/<%=args.mode%>/',
                 src: ['**/*'],
-                dest: 'builds/native/<%=args.target%>/<%=pkg.name%>/www/'
+                dest: 'builds/native/<%=args.mode%>/<%=pkg.name%>/www/'
             }]
         },
         android_assets: {
             files: [{
                 expand: true,
-                cwd: 'assets/<%=args.os<%>/icons/',
+                cwd: 'grunt/assets/<%=args.os%>/icons/',
                 src: ['**/*'],
-                dest: 'builds/native/<%=args.target%>/<%=pkg.name%>/platforms/<%=args.os%>/res/'
+                dest: 'builds/native/<%=args.mode%>/<%=pkg.name%>/platforms/<%=args.os%>/res/'
             }]
         },
         constants: {

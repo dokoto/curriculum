@@ -30,14 +30,15 @@ module.exports = {
                 $: true,
                 jQuery: true,
                 i18n: true,
-                btoa: true                
+                btoa: true,
+                screen: true
             }
         },
         gruntfile: {
             src: 'gruntfile.js'
         },
         files: {
-            src: ['./src/js/**/*.js', '!./components/**/*.js']
+            src: ['./src/web/js/**/*.js']
         }
     }
 };

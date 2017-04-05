@@ -14,7 +14,7 @@ module.exports = function(grunt, options) {
             entry: './src/web/js/app.js',
             output: {
                 devtoolLineToLine: true,
-                path: path.join(__dirname, '../builds/<%=args.target%>/<%=args.mode%>/'),
+                path: path.join(__dirname, '../builds/web/<%=args.mode%>/'),
                 filename: "<%=base.appName%>.js",
                 pathinfo: true,
                 sourceMapFilename: "<%=base.appName%>.js.map",
@@ -89,7 +89,7 @@ module.exports = function(grunt, options) {
         prod: {
             entry: './src/web/js/main.js',
             output: {
-                path: path.join(__dirname, '../builds/<%=args.target%>/<%=args.mode%>/'),
+                path: path.join(__dirname, '../builds/web/<%=args.mode%>/'),
                 filename: "<%=base.appName%>.js",
             },
 

@@ -45,6 +45,9 @@ class Configurator {
     }
 
     fetch(args) {
+        if (!args) {
+            return this.data;
+        }
         var params = args.slice(0);
         var result = this.explore(this.data, params);
         if (result.error === true) {
@@ -63,7 +66,8 @@ class Configurator {
 var doMap = {
     mkConf: function(grunt) {
         return {
-            base: new Configurator(grunt, './config/constants.json')
+            base: new Configurator(grunt, './config/constants.json'),
+            cordova: new Configurator(grunt, './config/build_cordova_conf_base.json'),
         };
     },
 
@@ -132,6 +136,16 @@ var doMap = {
         return data;
     },
 
+    cordova(grunt, conf, data) {
+        data.cordova = {};
+
+        data.cordova = conf.cordova.fetch();
+        data.cordova.configXmlPath = path.join('assets/cons', data.cordova.configFile);
+        data.cordova.configXmlActions = require('./config/build_cordova_config_xml.json');
+
+        return data;
+    },
+
 
 };
 
@@ -142,6 +156,7 @@ function header(grunt, data) {
     grunt.log.writeln('Project           : ' + data.args.target);
     grunt.log.writeln('App version       : ' + data.args.versionApp);
     grunt.log.writeln('Compilation Mode  : ' + data.args.mode);
+    grunt.log.writeln('Native OS target  : ' + data.args.os);
     grunt.log.writeln('Mock actived      : ' + data.args.mocks);
     grunt.log.writeln('Build Date        : ' + data.args.build_date);
     grunt.log.writeln('Verbose           : ' + data.args.verbose);
@@ -159,6 +174,9 @@ function mainProcess(grunt, data) {
 
     // BASE
     data = doMap.base(grunt, conf, data);
+
+    // CORDOVA
+    data = doMap.cordova(grunt, conf, data);
 
     // Header
     header(grunt, data);

@@ -1,51 +1,66 @@
 'use strict';
 
 module.exports = function(grunt, options) {
-    var build_full_dev = [
-        'copy:constants',
-        'jshint',
-        'mkdir:builds',
-        'clean:builds',
-        'copy:constants',
-        'webpack:dev',
-        'create-index',
-        'cordovacli:create',
-        'cordova-settings',
-        'cordovacli:add_platforms',
-        'cordovacli:add_plugins',
-        'copy:android_assets',
-        'copy:compiled_sources',
-        'cordovacli:build_android'
-    ];
-
-    var build_full_prod = [
-        'copy:constants',
-        'jshint',
-        'mkdir:builds',
-        'clean:builds',
-        'copy:constants',
-        'webpack:prod',
-        'create-index'
-    ];
-
-    function resolve(task, args) {
-        let tasker = [];
-
-        if (args.mode === 'dev') {
-            tasker = build_full_dev.slice();
-        } else if (args.mode === 'prod') {
-            tasker = build_full_prod.slice();
-        }
-
-        return tasker;
-    }
-
+    const buildScripts = {
+        native_dev: [
+            'copy:constants',
+            'jshint',
+            'mkdir:builds',
+            'clean:builds',
+            'copy:constants',
+            'webpack:dev',
+            'create-index',
+            'cordovacli:create',
+            'cordova-settings',
+            'cordovacli:add_platforms',
+            //'cordovacli:add_plugins',
+            'clean:bin_builds_www',
+            'copy:android_assets',
+            'copy:compiled_sources',
+            'cordovacli:build_android'
+        ],
+        native_prod: [
+            'copy:constants',
+            'jshint',
+            'mkdir:builds',
+            'clean:builds',
+            'copy:constants',
+            'webpack:prod',
+            'create-index',
+            'cordovacli:create',
+            'cordova-settings',
+            'cordovacli:add_platforms',
+            //'cordovacli:add_plugins',
+            'clean:bin_builds_www',
+            'copy:android_assets',
+            'copy:compiled_sources',
+            'cordovacli:build_android'
+        ],
+        web_dev: [
+            'copy:constants',
+            'jshint',
+            'mkdir:builds',
+            'clean:builds',
+            'copy:constants',
+            'webpack:dev',
+            'create-index'
+        ],
+        web_prod: [
+            'copy:constants',
+            'jshint',
+            'mkdir:builds',
+            'clean:builds',
+            'copy:constants',
+            'webpack:prod',
+            'create-index'
+        ]
+    };
 
     if (options && options.args) {
         let tasks = {
             'default': ['help'],
-            'web': resolve('web', options.args),
-            'native': resolve('native', options.args),
+            'web': buildScripts['web_' + options.args.mode],
+            'native': buildScripts['native_' + options.args.mode]
         };
 
         return tasks;
