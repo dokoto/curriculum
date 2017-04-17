@@ -43,6 +43,9 @@ module.exports = function(grunt, options) {
                     test: /\.html$/,
                     loader: "underscore-template-loader"
                 }, {
+                    test: /\.css$/,
+                    loader: "style-loader!css-loader"
+                }, {
                     test: /\.scss$/,
                     use: [{
                         loader: "style-loader" // creates style nodes from JS strings
@@ -87,7 +90,7 @@ module.exports = function(grunt, options) {
 
         },
         prod: {
-            entry: './src/web/js/main.js',
+            entry: './src/web/js/app.js',
             output: {
                 path: path.join(__dirname, '../builds/web/<%=args.mode%>/'),
                 filename: "<%=base.appName%>.js",
@@ -119,12 +122,18 @@ module.exports = function(grunt, options) {
                     loader: "style-loader!css-loader"
                 }, {
                     test: /\.scss$/,
-                    use: ["style", "css", "sass"]
+                    use: [{
+                        loader: "style-loader" // creates style nodes from JS strings
+                    }, {
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }, {
+                        loader: "sass-loader" // compiles Sass to CSS
+                    }]
                 }, {
                     test: /.*\.(png|woff|woff2|eot|ttf|svg|gif|jpe?g)$/i,
                     use: [
-                        'file?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
-                        'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+                        'file-loader?hash=sha512&digest=hex&name=./assets/[hash].[ext]',
+                        'image-webpack-loader?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
                     ]
                 }, {
                     test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
@@ -135,7 +144,7 @@ module.exports = function(grunt, options) {
                 }, {
                     test: /\.js$/,
                     exclude: /(node_modules|bower_components)/,
-                    loader: 'babel', // 'babel-loader' is also a legal name to reference
+                    loader: 'babel-loader', // 'babel-loader' is also a legal name to reference
                     options: {
                         plugins: ['transform-runtime'],
                         presets: ['es2015']

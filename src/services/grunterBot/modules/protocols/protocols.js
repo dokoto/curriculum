@@ -66,7 +66,8 @@ Los comandos que estan siempre a tu disposicion son:
         'next': 'matcher'
     }],
     'apk': [{
-        'question': 'En modo te gustaria compilar la apk, en "prod" o "dev" ?',
+        'question': `En modo te gustaria compilar la apk, en "prod" o "dev" ?
+        NOTA: en "dev" debido al uso de ES6 solo funcionara sobre API25 donde el webview soporta mas caracteristicas de ES6 para el resto de API mejor "prod"`,
         'error': 'Disculpame soy algo joven.. No he entendio que deseas "prod" o "dev" ?',
         'matcher': '\\bprod\\b|\\bdev\\b',
         'valueName': 'mode',

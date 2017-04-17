@@ -5,7 +5,7 @@ const TelegramDaemon = require('./modules/telegramAPI/telegramDaemon');
 const EngineProtocol = require('./modules/protocols/engine');
 const path = require('path');
 const Mailer = require('./utils/mailer');
-const GrunterCli = require('../../grunterCli/grunter-cli');
+const GrunterCli = require('../grunterCli/grunter-cli');
 
 class GrunterBot {
     constructor() {

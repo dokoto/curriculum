@@ -1,13 +1,13 @@
 {
-  "name": "curriculum",
+  "name": "lingbetest",
   "version": "0.0.1",
-  "description": "Web de presentacion de Manuel Alfaro Sierra",
+  "description": "Test para lingbe.com de Manuel Alfaro Sierra",
   "main": "cv.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bot": "node src/services/grunterBot/grunterBot.js"
   },
   "author": "manuel.alfaro.sierra@gmail.com",
-  "homepage": "https://github.com/dokoto/curriculum#readme",
+  "homepage": "https://github.com/dokoto/lingbe.com#readme",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.14.0",
@@ -49,7 +49,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^2.3.1",
     "webpack-dev-server": "^1.14.1",
-    "websocket": "^1.0.23",
     "xmldom": "^0.1.27"
   },
   "dependencies": {
@@ -57,17 +56,12 @@
     "babel-runtime": "^6.11.6",
     "backbone": "^1.3.3",
     "backbone.marionette": "^3.2.0",
-    "google-auth-library": "^0.10.0",
-    "googleapis": "^18.0.0",
     "i18n-browser": "^1.0.6",
     "imports-loader": "^0.6.5",
     "jquery": "^3.2.1",
-    "js-base64": "^2.1.9",
     "json-loader": "^0.5.4",
-    "mailparser": "^2.0.2",
     "method-override": "^2.3.7",
     "moment": "^2.15.1",
-    "node-telegram-bot": "^0.1.9",
     "sprintf-js": "^1.0.3",
     "underscore": "^1.8.3",
     "vex-dialog": "^1.0.6",

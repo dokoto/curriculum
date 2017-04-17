@@ -109,8 +109,8 @@ var doMap = {
         if (validParams.args.lang.indexOf(data.args.lang) === -1) {
             grunt.fail.fatal('El parametro --lang=' + data.args.lang + ' solo puede contener los valores: ' + validParams.args.lang);
         }
-        data.args.greetings = (grunt.option('greetings') || 'Gracias por tu interes :)');
         data.args.mocks = utils.misc.convBoolean(grunt.option, 'mocks', false);
+        data.args.greetings = (grunt.option('greetings') || 'Gracias por tu interes :)');
         data.args.verbose = utils.misc.convBoolean(grunt.option, 'verbose', false);
 
         data.args.build_date = new Date().toISOString();

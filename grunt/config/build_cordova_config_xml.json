@@ -55,7 +55,7 @@
             "value": "android-minSdkVersion"
         }, {
             "key": "value",
-            "value": "16"
+            "value": "19"
         }]
     }, {
         "nodeName": "preference",
